@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
-
-            $table->integer('client_id')->nullable()->unsigned();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            
-            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('clients');
     }
 };

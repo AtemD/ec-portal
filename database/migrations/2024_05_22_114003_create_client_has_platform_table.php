@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email');
+        Schema::create('client_has_platforms', function (Blueprint $table) {
+            $table->id();
 
-            $table->integer('client_id')->nullable()->unsigned();
+            $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
+            $table->tinyInteger('platform_id')->unsigned();
+            $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade');
             
-            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('client_has_platforms');
     }
 };

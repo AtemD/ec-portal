@@ -18,7 +18,7 @@
         
         <main class="app-main"> 
             <div class="app-content-header">
-                @include('includes.partials.app-content-header') 
+                @yield('app-content-header') 
             </div> 
             <div class="app-content">
                 @yield('content')

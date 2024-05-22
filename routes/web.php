@@ -5,11 +5,12 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\SitesController;
 use App\Http\Controllers\PlatformsController;
+use App\Http\Controllers\DistributionListController;
 
 // dashboard
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
 // Clients 
 Route::get('/clients', [ClientsController::class, 'index'])->name('clients.index');
@@ -46,3 +47,12 @@ Route::get('/platforms/{platform}',[PlatformsController::class, 'show'])->name('
 Route::get('/platforms/{platform}/edit',[PlatformsController::class, 'edit'])->name('platforms.edit');
 Route::put('/platforms/{platform}',[PlatformsController::class, 'update'])->name('platforms.update');
 Route::delete('/platforms/{platform}',[PlatformsController::class, 'destroy'])->name('platforms.destroy');
+
+// Distribution List 
+Route::get('/distribution-list', [DistributionListController::class, 'index'])->name('distribution-list.index');
+Route::get('/distribution-list/create',[DistributionListController::class, 'create'])->name('distribution-list.create');
+Route::post('/distribution-list',[DistributionListController::class, 'store'])->name('distribution-list.store');
+Route::get('/distribution-list/{platform}',[DistributionListController::class, 'show'])->name('distribution-list.show');
+Route::get('/distribution-list/{platform}/edit',[DistributionListController::class, 'edit'])->name('distribution-list.edit');
+Route::put('/distribution-list/{platform}',[DistributionListController::class, 'update'])->name('distribution-list.update');
+Route::delete('/distribution-list/{platform}',[DistributionListController::class, 'destroy'])->name('distribution-list.destroy');

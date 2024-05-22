@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
+use Illuminate\Http\Request;
 
-class ClientsController extends Controller
+class DistributionListController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::all();
-        
-        return view('clients/index', compact('clients'));
+        //
     }
 
     /**
@@ -29,7 +25,7 @@ class ClientsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreClientRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -37,7 +33,7 @@ class ClientsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +41,7 @@ class ClientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Client $client)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +49,7 @@ class ClientsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +57,7 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(string $id)
     {
         //
     }

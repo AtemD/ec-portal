@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+
+            $table->integer('client_id')->nullable()->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
