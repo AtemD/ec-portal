@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,15 @@ class ContactFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            //
+            'name' => $this->faker->firstName . ' ' . $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail(),
+            'client_id' => function () {
+                return Client::factory()->create()->id;
+            },
+            'phone_number' => $this->faker->phoneNumber,
         ];
+
     }
 }

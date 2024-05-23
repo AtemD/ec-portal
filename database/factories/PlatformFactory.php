@@ -16,8 +16,9 @@ class PlatformFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->word;
         return [
-            //
+            'name' => 'platform_' . $name,
         ];
     }
 }

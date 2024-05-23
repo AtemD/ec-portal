@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,12 @@ class SiteFactory extends Factory
      */
     public function definition(): array
     {
+        $site = $this->faker->word;
         return [
-            //
+            'name' => 'site_' . $site,
+            'client_id' => function () {
+                return Client::factory()->create()->id;
+            },
         ];
     }
 }

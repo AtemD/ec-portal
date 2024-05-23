@@ -16,8 +16,9 @@ class ClientFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->word;
         return [
-            //
+            'name' => 'client_' . $name,
         ];
     }
 }
