@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('contract_statuses', function (Blueprint $table) {
+            $table->tinyIncrements('id');
             $table->string('name');
-
-            // contract status: active, terminated 
-            
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('contract_statuses');
     }
 };

@@ -5,12 +5,22 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\SitesController;
 use App\Http\Controllers\PlatformsController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DistributionListController;
 
 // dashboard
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// Clients 
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+Route::get('/users/create',[UsersController::class, 'create'])->name('users.create');
+Route::post('/users',[UsersController::class, 'store'])->name('users.store');
+Route::get('/users/{client}',[UsersController::class, 'show'])->name('users.show');
+Route::get('/users/{client}/edit',[UsersController::class, 'edit'])->name('users.edit');
+Route::put('/users/{client}',[UsersController::class, 'update'])->name('users.update');
+Route::delete('/users/{client}',[UsersController::class, 'destroy'])->name('users.destroy');
 
 // Clients 
 Route::get('/clients', [ClientsController::class, 'index'])->name('clients.index');

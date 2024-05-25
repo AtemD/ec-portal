@@ -13,7 +13,12 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::with([
+            'contractStatus',
+            'contacts',
+            'platforms', 
+            'sites'
+        ])->paginate(15);
         
         return view('clients/index', compact('clients'));
     }
@@ -39,7 +44,13 @@ class ClientsController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        $client = $client->load([
+            'contacts',
+            'platforms', 
+            'sites'
+        ]);
+        
+        return view('clients/show', compact('client'));
     }
 
     /**

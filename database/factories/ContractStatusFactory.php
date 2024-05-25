@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Platform>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class PlatformFactory extends Factory
+class ContractStatusFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,9 @@ class PlatformFactory extends Factory
     {
         $name = $this->faker->word;
         return [
-            'name' => 'platform_' . $name,
-            'description' => collect($this->faker->paragraphs(1, false))->implode(''),
+            'name' => 'contract_status_' . $name,
+            'description' => $this->faker->sentence,
+            'color' => 'color_' . $name,
         ];
     }
 }

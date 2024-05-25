@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Client;
+use App\Models\ContractStatus;
 
 class ClientSeeder extends Seeder
 {
@@ -17,44 +18,61 @@ class ClientSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('clients')->truncate();
 
+        $contract_statuses = ContractStatus::all();
+
         Client::factory()->create([
-            'name' => 'World Vision'
+            'name' => 'World Vision',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'War Child'
+            'name' => 'War Child',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'DT Global'
+            'name' => 'DT Global',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Windle Trust'
+            'name' => 'Windle Trust',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Doa Dorcas'
+            'name' => 'Zoa Dorcas',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Plan International'
+            'name' => 'Plan International',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Care International '
+            'name' => 'Care International',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Across Africa'
+            'name' => 'Across Africa',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'Mercy Corps'
+            'name' => 'Mercy Corps',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         Client::factory()->create([
-            'name' => 'TearFund'
+            'name' => 'TearFund',
+            'contract_status_id' => $contract_statuses->random()->id,
+        ]);
+
+        Client::factory()->create([
+            'name' => 'Eve Organization',
+            'contract_status_id' => $contract_statuses->random()->id,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
