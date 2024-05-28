@@ -83,12 +83,12 @@
                                 </td>
 
                                 <td class="project-actions">
-                                    <a class="btn btn-outline-primary btn-sm" href="{{ route('clients.show', ['client' => $client])}}" role="button">
+                                    <a class="btn btn-outline-primary btn-sm mb-2" href="{{ route('clients.show', ['client' => $client])}}" role="button">
                                         <i class="bi bi-eye">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-outline-info btn-sm" href="{{ route('clients.edit', ['client' => $client])}}" role="button">
+                                    <a class="btn btn-outline-info btn-sm mb-2" href="{{ route('clients.edit', ['client' => $client])}}" role="button">
                                         <i class="bi bi-pencil-square">
                                         </i>
                                         Edit
