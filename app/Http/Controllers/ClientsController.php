@@ -58,7 +58,14 @@ class ClientsController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $client = $client->load([
+            'contractStatus',
+            'contacts',
+            'platforms', 
+            'sites'
+        ]);
+        
+        return view('clients/edit', compact('client'));
     }
 
     /**
