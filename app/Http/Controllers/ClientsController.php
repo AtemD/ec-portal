@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Models\ContractStatus;
+use App\Models\Platform;
 
 class ClientsController extends Controller
 {
@@ -45,12 +47,19 @@ class ClientsController extends Controller
     public function show(Client $client)
     {
         $client = $client->load([
+            'contractStatus',
             'contacts',
             'platforms', 
             'sites'
         ]);
         
-        return view('clients/show', compact('client'));
+        // dd($client->platforms);
+        $contract_statuses = ContractStatus::all();
+        $platforms = Platform::all();
+        // dd($client->toArray());
+        // dd($client->platforms->contains('name', 'C-Band'));
+
+        return view('clients/show', compact('client', 'contract_statuses', 'platforms'));
     }
 
     /**
