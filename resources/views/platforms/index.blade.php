@@ -120,12 +120,12 @@
                                 <td>{{$platform->description}}</td>
 
                                 <td class="project-actions">
-                                    <a class="btn btn-outline-primary btn-sm mb-1" href="{{ route('platforms.show', ['platform' => $platform]) }}" role="button">
+                                    <a class="btn btn-outline-primary btn-sm mb-1" href="{{ route('platform.show', ['platform' => $platform]) }}" role="button">
                                         <i class="bi bi-eye">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-outline-info btn-sm mb-1" href="{{ route('platforms.edit', ['platform' => $platform]) }}" role="button">
+                                    <a class="btn btn-outline-info btn-sm mb-1" href="{{ route('platform.edit', ['platform' => $platform]) }}" role="button">
                                         <i class="bi bi-pencil-square">
                                         </i>
                                         Edit

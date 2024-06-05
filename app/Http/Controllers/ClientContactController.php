@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
-use App\Http\Requests\StoreSiteRequest;
-use App\Http\Requests\UpdateSiteRequest;
+use App\Models\Contact;
+use App\Http\Requests\StoreClientContactRequest;
+use App\Http\Requests\UpdateClientContactRequest;
+use App\Models\Client;
 
-class SitesController extends Controller
+class ClientContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +20,15 @@ class SitesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Client $client)
     {
-        //
+        return view('contacts.create', compact('client'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSiteRequest $request)
+    public function store(StoreClientContactRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class SitesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Site $site)
+    public function show(Contact $contact)
     {
         //
     }
@@ -43,7 +44,7 @@ class SitesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Site $site)
+    public function edit(Contact $contact)
     {
         //
     }
@@ -51,7 +52,7 @@ class SitesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSiteRequest $request, Site $site)
+    public function update(UpdateClientContactRequest $request, Contact $contact)
     {
         //
     }
@@ -59,7 +60,7 @@ class SitesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Site $site)
+    public function destroy(Contact $contact)
     {
         //
     }

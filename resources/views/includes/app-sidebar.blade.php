@@ -21,21 +21,21 @@
                  </li>
 
                  <li class="nav-item">
-                     <a href="{{ route('users.index') }}" class="nav-link {{ (request()->routeIs('users.*')) ? 'active' : '' }}"> 
+                     <a href="{{ route('user.index') }}" class="nav-link {{ (request()->routeIs('user.*')) ? 'active' : '' }}"> 
                         <i class="nav-icon bi bi-people"></i>
                          <p>Admins</p>
                      </a>
                  </li>
 
                  <li class="nav-item">
-                     <a href="{{ route('clients.index') }}" class="nav-link {{ (request()->routeIs('clients.*')) ? 'active' : '' }}"> 
+                     <a href="{{ route('client.index') }}" class="nav-link {{ (request()->routeIs('client.*')) ? 'active' : '' }}"> 
                         <i class="nav-icon bi bi-building"></i>
                          <p>Clients</p>
                      </a>
                  </li>
 
                  <li class="nav-item">
-                     <a href="{{ route('platforms.index') }}" class="nav-link {{ (request()->routeIs('platforms.*')) ? 'active' : '' }}"> 
+                     <a href="{{ route('platform.index') }}" class="nav-link {{ (request()->routeIs('platform.*')) ? 'active' : '' }}"> 
                         <i class="nav-icon bi bi-hdd-network"></i>
                          <p>Platforms</p>
                      </a>

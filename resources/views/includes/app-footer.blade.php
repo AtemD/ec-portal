@@ -1,6 +1,7 @@
-<div class="float-end d-none d-sm-inline">Expert Communications.</div> <!--end::To the end--> <!--begin::Copyright--> <strong>
+<div class="float-end d-none d-sm-inline">Expert Communications.</div> 
+<strong>
     Copyright &copy; 2017-2024&nbsp;
-    <a href="https://portal.ec-southsudan.com" class="text-decoration-none">portal.ec-southsudan.com</a>.
+    <a href="https://www.portal.ec-southsudan.com" class="text-decoration-none">portal.ec-southsudan.com</a>.
 </strong>
 All rights reserved.
 <!--end::Copyright-->

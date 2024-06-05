@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Platform;
-use App\Http\Requests\StorePlatformRequest;
-use App\Http\Requests\UpdatePlatformRequest;
+use Illuminate\Http\Request;
 
-class PlatformsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $platforms = Platform::paginate(10);
-        // dd($platforms);
-        return view('platforms/index', compact('platforms'));
+        //
     }
 
     /**
@@ -29,7 +25,7 @@ class PlatformsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePlatformRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -37,7 +33,7 @@ class PlatformsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Platform $platform)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +41,7 @@ class PlatformsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Platform $platform)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +49,7 @@ class PlatformsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlatformRequest $request, Platform $platform)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +57,7 @@ class PlatformsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Platform $platform)
+    public function destroy(string $id)
     {
         //
     }

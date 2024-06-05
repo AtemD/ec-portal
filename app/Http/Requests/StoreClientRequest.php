@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Client;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClientRequest extends FormRequest
@@ -11,7 +12,10 @@ class StoreClientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // return false;
+        // return $this->user()->can('create', Client::class);
+        // return $this->user()->can('update', $this->comment);
+        return true;
     }
 
     /**
@@ -22,7 +26,8 @@ class StoreClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:250'],
+            'contract_status' => ['required', 'exists:contract_statuses,id'],
         ];
     }
 }

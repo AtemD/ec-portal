@@ -24,3 +24,4 @@
 <link href="{{ asset('dist/css/adminlte.min.css') }}" rel="stylesheet">
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+@livewireStyles

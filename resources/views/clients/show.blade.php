@@ -219,9 +219,9 @@
                             </tr>
                         </tbody>
                     </table>
-                </div> <!-- /.card-body -->
-            </div> <!-- /.card -->
-        </div> <!-- /.col -->
-    </div> <!--end::Row-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

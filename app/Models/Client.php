@@ -12,6 +12,15 @@ class Client extends Model
     use HasFactory, HasSlug;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 'contract_status_id'
+    ];
+
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions() : SlugOptions

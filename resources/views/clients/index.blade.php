@@ -31,12 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-primary">
-                            <i class="bi bi-plus xs"></i>
-                            Add Client
-                        </button>
-                    </div>
+                    <livewire:create-client :contract_statuses="$contract_statuses"/>
                 </div>
                 <div class="card-body p-0 table-responsive">
                     <table class="table table-hover">
@@ -83,12 +78,12 @@
                                 </td>
 
                                 <td class="project-actions">
-                                    <a class="btn btn-outline-primary btn-sm mb-2" href="{{ route('clients.show', ['client' => $client])}}" role="button">
+                                    <a class="btn btn-outline-primary btn-sm mb-2" href="{{ route('client.show', ['client' => $client])}}" role="button">
                                         <i class="bi bi-eye">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-outline-info btn-sm mb-2" href="{{ route('clients.edit', ['client' => $client])}}" role="button">
+                                    <a class="btn btn-outline-info btn-sm mb-2" href="{{ route('client.edit', ['client' => $client])}}" role="button">
                                         <i class="bi bi-pencil-square">
                                         </i>
                                         Edit

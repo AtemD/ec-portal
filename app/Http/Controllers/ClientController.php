@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateClientRequest;
 use App\Models\ContractStatus;
 use App\Models\Platform;
 
-class ClientsController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,13 @@ class ClientsController extends Controller
             'contacts',
             'platforms', 
             'sites'
-        ])->paginate(15);
+        ])->get(); //->paginate(15);
+
+        // dd($clients->toArray());
         
-        return view('clients/index', compact('clients'));
+        $contract_statuses = ContractStatus::select('id', 'name', 'color')->get();
+
+        return view('clients/index', compact('clients', 'contract_statuses'));
     }
 
     /**
@@ -30,7 +34,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +42,22 @@ class ClientsController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
+        // Retrieve the validated input data...
+        $validated = $request->validated();
+    
+        // Retrieve a portion of the validated input data...
+        $validated = $request->safe()->only(['name', 'contract_status']);
+
+        // Store the client
+        $client = Client::create([
+            'name' => $validated['name'],
+            'contract_status' => $validated['contract_status'],
+        ]);
+
+        // redirect
+        return redirect()
+            ->route('clients.contacts.create', ['client' => $client])
+            ->with('success', 'Client Added Successfully');
     }
 
     /**
@@ -53,11 +72,8 @@ class ClientsController extends Controller
             'sites'
         ]);
         
-        // dd($client->platforms);
         $contract_statuses = ContractStatus::all();
         $platforms = Platform::all();
-        // dd($client->toArray());
-        // dd($client->platforms->contains('name', 'C-Band'));
 
         return view('clients/show', compact('client', 'contract_statuses', 'platforms'));
     }
@@ -73,8 +89,11 @@ class ClientsController extends Controller
             'platforms', 
             'sites'
         ]);
+
+        $contract_statuses = ContractStatus::all();
+        $platforms = Platform::all();
         
-        return view('clients/edit', compact('client'));
+        return view('clients/edit', compact('client', 'contract_statuses', 'platforms'));
     }
 
     /**

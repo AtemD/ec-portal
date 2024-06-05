@@ -71,8 +71,7 @@
             }
         });
     </script>
-    <!--end::OverlayScrollbars Configure-->
-    <!--end::Script-->
 
+    @livewireScripts
 </body>
 </html>
