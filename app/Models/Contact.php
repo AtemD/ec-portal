@@ -9,6 +9,15 @@ class Contact extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 'email', 'phone_number'
+    ];
+
     public function client()
     {
         return $this->belongsTo(Client::class);

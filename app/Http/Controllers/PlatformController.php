@@ -13,9 +13,7 @@ class PlatformController extends Controller
      */
     public function index()
     {
-        $platforms = Platform::paginate(10);
-        // dd($platforms);
-        return view('platforms/index', compact('platforms'));
+       return view('platforms/index');
     }
 
     /**

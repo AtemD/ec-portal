@@ -105,12 +105,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Contacts</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-plus xs"></i>
-                            Add Contact
-                        </button>
-                    </div>
+                    <livewire:create-client-contact :client="$client"/>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">

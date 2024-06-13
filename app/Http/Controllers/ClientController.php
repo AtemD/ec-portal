@@ -72,10 +72,10 @@ class ClientController extends Controller
             'sites'
         ]);
         
-        $contract_statuses = ContractStatus::all();
+        $contractStatuses = ContractStatus::all();
         $platforms = Platform::all();
 
-        return view('clients/show', compact('client', 'contract_statuses', 'platforms'));
+        return view('clients/show', compact('client', 'contractStatuses', 'platforms'));
     }
 
     /**

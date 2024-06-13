@@ -73,5 +73,14 @@
     </script>
 
     @livewireScripts
+
+    <script>
+         window.addEventListener('client-contact-deleted', (event) => {
+            console.log(event);
+            const myModal = new bootstrap.Modal('#deleteClientContactModal');
+            myModal.hide();
+
+         });
+     </script>
 </body>
 </html>
