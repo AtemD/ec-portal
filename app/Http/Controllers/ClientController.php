@@ -20,9 +20,7 @@ class ClientController extends Controller
             'contacts',
             'platforms', 
             'sites'
-        ])->get(); //->paginate(15);
-
-        // dd($clients->toArray());
+        ])->paginate(15);
         
         $contract_statuses = ContractStatus::select('id', 'name', 'color')->get();
 
