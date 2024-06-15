@@ -15,8 +15,6 @@
                 Add Platform
             </button>
 
-            @include('livewire.client.platform.platform-modal')
-
             <div wire:ignore.self class="modal" id="createPlatformModal" data-bs-backdrop="static" tabindex="-1"
                 aria-labelledby="createPlatformModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">

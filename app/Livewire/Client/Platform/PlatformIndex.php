@@ -10,37 +10,43 @@ use Livewire\Component;
 class PlatformIndex extends Component
 {
     public Client $client;
+    public array $platforms = [];
+    public array $allPlatforms = [];
+    public array $clientPlatforms = [];
 
-    public Collection $platforms;
+    public function rules()
+    {
+        return [
+            'platforms' => ['array', 'min:1'], 
+            'platforms.*' => ['exists:platforms,id'],
+        ];
+    }
 
     public function mount(Client $client)
     {
         $this->client = $client;
-        $this->platforms = Platform::all();
+
+        // Initialize platforms with the client's current platforms
+        $this->platforms = $client->platforms->pluck('id')->toArray();
+        $this->allPlatforms = Platform::all()->toArray();
+        $this->clientPlatforms = $client->platforms->toArray();
     }
 
     public function storePlatform()
     {
-
-    }
-
-    public function updatePlatform()
-    {
-        // Authorize if the user is allowed to delete this platform
-        // $this->authorize('update', $platform);
-
+        // Authorize if the user is allowed to create a contact
+        // Authorize code here..
+       
         $validatedData = $this->validate();
+        
+        $platforms = $this->client->platforms()->sync($validatedData['platforms']);
 
-        try {
-            Platform::whereId($this->platform->id)->update([
-                'name' => $validatedData['name'],
-                'description' => $validatedData['description'],
-            ]);
-            session()->flash('success', 'Platform successfully updated!');
-
-        } catch (\Exception $ex) {
-            session()->flash('error', ' Error, something gone wrong!');
+        if ($platforms) {
+            session()->flash('success', 'platforms updated successfully.');
+        } else {
+            session()->flash('error', ' Error storing this record.');
         }
+
     }
 
     public function closeModal()
@@ -49,9 +55,13 @@ class PlatformIndex extends Component
     }
 
     public function render()
-    {
+    { 
+        // $clientPlatforms = $this->client->platforms()->get();
+        // dd($clientPlatforms->contains('name', 'C-Band'));
         return view('livewire.client.platform.platform-index', [
-            'platforms' => Platform::paginate(10),
+            'client' => $this->client,
+            'allPlatforms' => Platform::all(), // Pass all platforms to the view
+            'clientPlatforms' => $this->client->platforms,
         ]);
     }
 }

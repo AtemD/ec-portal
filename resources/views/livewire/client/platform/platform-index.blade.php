@@ -3,21 +3,21 @@
         <h3 class="card-title me-auto">Platforms</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                data-bs-target="#clientSiteCreate">
+                data-bs-target="#editPlatformModal">
                 <i class="bi bi-plus xs"></i>
-                Add Platform
+                Add/Edit Platform
             </button>
 
-            <div wire:ignore.self class="modal fade" id="clientSiteCreate" data-bs-backdrop="static" tabindex="-1"
-                aria-labelledby="clientSiteCreateLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div wire:ignore.self class="modal fade" id="editPlatformModal" data-bs-backdrop="static" tabindex="-1"
+                aria-labelledby="editPlatformModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="clientSiteCreateLabel">Add Site</h1>
+                            <h1 class="modal-title fs-5" id="editPlatformModalLabel">Add Platform</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <form wire:submit.prevent="save">
+                        <form wire:submit.prevent="storePlatform">
                             <div class="modal-body">
                                 @csrf
 
@@ -34,24 +34,47 @@
                                 @endif
 
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" wire:model="name"
-                                        class="form-control @error('name') is-invalid @enderror" id="name"
-                                        name="name" value="{{ old('name') }}" placeholder="Enter client name">
-
-                                    @error('name')
-                                        <div class="invalid-feedback text-danger">
-                                            <strong>{{ $message }}</strong>
+                                    @forelse($allPlatforms as $platform)
+                                        <div class="form-check" wire:key="modal-{{ $platform['id'] }}">
+                                            <input type="checkbox" wire:model="platforms" name="platforms[]"
+                                                value="{{ $platform['id'] }}" class="form-check-input"
+                                                id="add-platform-{{ $platform['id'] }}">
+                                            <label class="form-check-label text-dark"
+                                                for="add-platform-{{ $platform['id'] }}">
+                                                {{ $platform['name'] }}
+                                            </label>
                                         </div>
-                                    @enderror
-                                </div>
+                                    @empty
+                                        <div class="alert alert-warning" role="alert">
+                                            No platforms to show, create one.
+                                        </div>
+                                    @endforelse
 
+
+                                    @error('platforms')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    @foreach ($errors->get('platforms.*') as $message)
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message[0] }}</strong>
+                                        </span>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="modal-footer d-flex justify-content-between">
                                 <button wire:click="closeModal" type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button wire:click="createClientSite" type="button" class="btn btn-primary">Add
-                                    Site</button>
+                                <button type="submit" class="btn btn-primary">
+                                    @if (count($platforms) < 1)
+                                        Add Platform
+                                    @else
+                                        Update
+                                        Platform
+                                    @endif
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -62,14 +85,13 @@
     </div>
     <div class="card-body">
         <div class="mb-3">
-            @if ($client->platforms->count() > 0)
-                @forelse($platforms as $platform)
-                    <div class="form-check" wire:key="{{ $platform->id }}">
-                        <input type="checkbox" name="platforms[]" value="{{ $platform->id }}" class="form-check-input"
-                            id="add-platform-{{ $platform->id }}"
-                            {{ $client->platforms->contains('name', $platform->name) ? 'checked' : '' }} disabled>
-                        <label class="form-check-label text-dark" for="add-platform-{{ $platform->id }}">
-                            {{ $platform->name }}
+            @if (count($platforms) > 0)
+                @forelse($allPlatforms as $platform)
+                    <div class="form-check" wire:key="show-{{ $platform['id'] }}">
+                        <input type="checkbox" wire:model="platforms" name="platforms[]" value="{{ $platform['id'] }}"
+                            class="form-check-input" id="show-platform-{{ $platform['id'] }}">
+                        <label class="form-check-label text-dark" for="show-platform-{{ $platform['id'] }}">
+                            {{ $platform['name'] }}
                         </label>
                     </div>
                 @empty
@@ -92,12 +114,7 @@
         </div>
     </div>
     <div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-end">
-            <li class="page-item"> <a class="page-link" href="#">«</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">»</a> </li>
-        </ul>
+        {{ $this->client->name }} is on {{ $platformCount = count($platforms) }}
+        {{ Str::plural('platform', $platformCount) }}.
     </div>
 </div>
