@@ -27,21 +27,6 @@ class PlatformIndex extends Component
         ];
     }
 
-    public function closeModal()
-    {
-        $this->resetFields();
-    }
-
-    public function openModal()
-    {
-        $this->resetFields();
-    }
-
-    public function resetFields()
-    {
-        $this->reset(['name', 'description', 'platformId']);
-    }
-
     public function editPlatform($platform)
     {
         // Find and delete the platform
@@ -53,7 +38,7 @@ class PlatformIndex extends Component
             $this->name = $platform->name;
             $this->description = $platform->description;
         } else {
-            session()->flash('error', ' Error, something gone wrong.');
+            session()->flash('error', ' Error editing the platform.');
         }
 
     }
@@ -76,7 +61,7 @@ class PlatformIndex extends Component
             $this->dispatch('platform-created');
             $this->render();
         } else {
-            session()->flash('error', ' Error, please try again.');
+            session()->flash('error', ' Error creating the platform.');
         }
 
     }
@@ -96,7 +81,7 @@ class PlatformIndex extends Component
             session()->flash('success', 'Platform successfully updated!');
 
         } catch (\Exception $ex) {
-            session()->flash('error', ' Error, something gone wrong!');
+            session()->flash('error', ' Error updating the platform!');
         }
     }
 
@@ -112,8 +97,23 @@ class PlatformIndex extends Component
             $platform->delete();
             session()->flash('success', 'Platform successfully deleted.');
         } else {
-            session()->flash('error', ' Error, please try again.');
+            session()->flash('error', ' Error deleting the platform.');
         }
+    }
+
+    public function closeModal()
+    {
+        $this->resetFields();
+    }
+
+    public function openModal()
+    {
+        $this->resetFields();
+    }
+
+    public function resetFields()
+    {
+        $this->reset(['name', 'description', 'platformId']);
     }
 
     public function render(): View

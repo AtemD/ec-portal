@@ -197,8 +197,6 @@
     </table>
 </div>
 <div class="card-footer clearfix">
-    <ul class="pagination pagination-sm m-0 float-end">
-        {{ $platforms->links() }}
-    </ul>
+    {{ $platforms->links() }}
 </div>
 </div>
