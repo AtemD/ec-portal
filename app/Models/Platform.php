@@ -16,9 +16,9 @@ class Platform extends Model
      */
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
- 
+
     public function clients()
     {
         return $this->belongsToMany(Client::class, 'client_has_platforms', 'platform_id', 'client_id');

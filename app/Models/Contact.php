@@ -15,7 +15,7 @@ class Contact extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'phone_number'
+        'name', 'email', 'phone_number',
     ];
 
     public function client()

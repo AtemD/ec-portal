@@ -15,8 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
 
-            // contract status: active, terminated 
-            
+            // contract status: active, terminated
+
             $table->timestamps();
         });
     }

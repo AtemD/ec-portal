@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Http\Requests\StoreClientContactRequest;
 use App\Http\Requests\UpdateClientContactRequest;
 use App\Models\Client;
+use App\Models\Contact;
 
 class ClientContactController extends Controller
 {

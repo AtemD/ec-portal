@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Platform;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Platform;
 
 class PlatformSeeder extends Seeder
 {
@@ -18,23 +17,23 @@ class PlatformSeeder extends Seeder
         DB::table('platforms')->truncate();
 
         Platform::factory()->create([
-            'name' => 'Starlink'
+            'name' => 'Starlink',
         ]);
 
         Platform::factory()->create([
-            'name' => 'KU-Band'
+            'name' => 'KU-Band',
         ]);
 
         Platform::factory()->create([
-            'name' => 'C-Band'
+            'name' => 'C-Band',
         ]);
 
         Platform::factory()->create([
-            'name' => 'Fiber Optics'
+            'name' => 'Fiber Optics',
         ]);
 
         Platform::factory()->create([
-            'name' => 'Fiber Optics Microwave'
+            'name' => 'Fiber Optics Microwave',
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

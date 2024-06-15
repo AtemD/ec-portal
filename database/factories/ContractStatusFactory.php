@@ -17,10 +17,11 @@ class ContractStatusFactory extends Factory
     public function definition(): array
     {
         $name = $this->faker->word;
+
         return [
-            'name' => 'contract_status_' . $name,
+            'name' => 'contract_status_'.$name,
             'description' => $this->faker->sentence,
-            'color' => 'color_' . $name,
+            'color' => 'color_'.$name,
         ];
     }
 }

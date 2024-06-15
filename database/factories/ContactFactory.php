@@ -19,7 +19,7 @@ class ContactFactory extends Factory
     {
 
         return [
-            'name' => $this->faker->firstName . ' ' . $this->faker->lastName,
+            'name' => $this->faker->firstName.' '.$this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail(),
             'client_id' => function () {
                 return Client::factory()->create()->id;

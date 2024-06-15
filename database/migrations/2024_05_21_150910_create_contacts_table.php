@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->integer('client_id')->nullable()->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            
+
             $table->string('phone_number');
             $table->timestamps();
         });

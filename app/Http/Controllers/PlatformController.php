@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Platform;
 use App\Http\Requests\StorePlatformRequest;
 use App\Http\Requests\UpdatePlatformRequest;
+use App\Models\Platform;
 
 class PlatformController extends Controller
 {
@@ -13,7 +13,7 @@ class PlatformController extends Controller
      */
     public function index()
     {
-       return view('platforms/index');
+        return view('platforms/index');
     }
 
     /**

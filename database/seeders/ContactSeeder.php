@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
-use Illuminate\Support\Facades\DB;
 use App\Models\Client;
 use App\Models\Contact;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ContactSeeder extends Seeder
 {
@@ -21,9 +19,9 @@ class ContactSeeder extends Seeder
 
         // for each client, create between 1 to 3 contacts
         $clients = Client::all();
-        $clients->each(function($client) {
+        $clients->each(function ($client) {
             Contact::factory()->times(mt_rand(1, 3))->create([
-                'client_id' => $client->id, 
+                'client_id' => $client->id,
             ]);
         });
 

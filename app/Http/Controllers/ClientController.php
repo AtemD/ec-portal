@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Models\Client;
 use App\Models\ContractStatus;
-use App\Models\Platform;
 
 class ClientController extends Controller
 {
@@ -18,10 +17,10 @@ class ClientController extends Controller
         $clients = Client::with([
             'contractStatus',
             'contacts',
-            'platforms', 
-            'sites'
+            'platforms',
+            'sites',
         ])->paginate(15);
-        
+
         $contract_statuses = ContractStatus::select('id', 'name', 'color')->get();
 
         return view('clients/index', compact('clients', 'contract_statuses'));
@@ -32,7 +31,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -42,7 +41,7 @@ class ClientController extends Controller
     {
         // Retrieve the validated input data...
         $validated = $request->validated();
-    
+
         // Retrieve a portion of the validated input data...
         $validated = $request->safe()->only(['name', 'contract_status']);
 
@@ -63,17 +62,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        $client = $client->load([
-            'contractStatus',
-            'contacts',
-            'platforms', 
-            'sites'
-        ]);
-        
-        $contractStatuses = ContractStatus::all();
-        $platforms = Platform::all();
-
-        return view('clients/show', compact('client', 'contractStatuses', 'platforms'));
+        return view('clients/show', compact('client'));
     }
 
     /**
@@ -81,17 +70,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $client = $client->load([
-            'contractStatus',
-            'contacts',
-            'platforms', 
-            'sites'
-        ]);
-
-        $contract_statuses = ContractStatus::all();
-        $platforms = Platform::all();
-        
-        return view('clients/edit', compact('client', 'contract_statuses', 'platforms'));
+        //
     }
 
     /**

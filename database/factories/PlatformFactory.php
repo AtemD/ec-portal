@@ -17,8 +17,9 @@ class PlatformFactory extends Factory
     public function definition(): array
     {
         $name = $this->faker->word;
+
         return [
-            'name' => 'platform_' . $name,
+            'name' => 'platform_'.$name,
             'description' => collect($this->faker->paragraphs(1, false))->implode(''),
         ];
     }

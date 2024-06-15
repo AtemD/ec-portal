@@ -2,9 +2,8 @@
 
 namespace App\Livewire\Client\Site;
 
-use Livewire\Component;
 use App\Models\Client;
-use App\Models\Site;
+use Livewire\Component;
 
 class Create extends Component
 {
@@ -19,9 +18,9 @@ class Create extends Component
         ];
     }
 
-     public function mount($client) 
+    public function mount($client)
     {
-        
+
         $this->client = $client;
     }
 
@@ -32,20 +31,20 @@ class Create extends Component
 
     public function createClientSite()
     {
-        $this->validate(); 
+        $this->validate();
 
         $site = $this->client->sites()->create([
             'name' => $this->name,
         ]);
 
-        if($site->exists()){
-            session()->flash('success', 'Site ' . $site->name . ' added successfully.');
+        if ($site->exists()) {
+            session()->flash('success', 'Site '.$site->name.' added successfully.');
             $this->reset(['name']);
-            $this->dispatch('client-site-created'); 
+            $this->dispatch('client-site-created');
         } else {
             session()->flash('error', ' Error, please try again.');
         }
-        
+
     }
 
     public function render()

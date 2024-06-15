@@ -18,8 +18,9 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         $name = $this->faker->word;
+
         return [
-            'name' => 'client_' . $name,
+            'name' => 'client_'.$name,
             'contract_status_id' => function () {
                 return ContractStatus::factory()->create()->id;
             },

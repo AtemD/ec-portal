@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\Client;
 use App\Models\Platform;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ClientHasPlatformSeeder extends Seeder
 {
@@ -23,7 +22,7 @@ class ClientHasPlatformSeeder extends Seeder
         $clients = Client::all();
         $platforms_count = $platforms->count();
 
-        $clients->each(function($client) use($platforms, $platforms_count) {
+        $clients->each(function ($client) use ($platforms, $platforms_count) {
             $client->platforms()->attach($platforms->random(mt_rand(1, $platforms_count)));
         });
 

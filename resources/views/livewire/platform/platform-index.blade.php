@@ -167,7 +167,7 @@
             </thead>
             <tbody>
                 @forelse($platforms as $platform)
-                    <tr class="align-middle">
+                    <tr class="align-middle" wire:key="{{ $platform->id }}">
                         <td>{{ $platform->name }}</td>
                         <td>{{ $platform->description }}</td>
 

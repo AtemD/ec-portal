@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ContractStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\ContractStatus;
 
 class ContractStatusSeeder extends Seeder
 {
@@ -19,12 +18,12 @@ class ContractStatusSeeder extends Seeder
 
         ContractStatus::factory()->create([
             'name' => 'Active',
-            'color' => 'success'
+            'color' => 'success',
         ]);
 
         ContractStatus::factory()->create([
             'name' => 'Terminated',
-            'color' => 'warning'
+            'color' => 'warning',
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

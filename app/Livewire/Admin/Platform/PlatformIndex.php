@@ -8,12 +8,12 @@ class PlatformIndex extends Component
 {
     public function storePlatform()
     {
-        
+
     }
 
     public function render()
     {
-        return view('livewire.platform.admin.platform-index', [ 
+        return view('livewire.platform.admin.platform-index', [
             'platforms' => Platform::paginate(10),
         ]);
     }

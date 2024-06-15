@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->tinyInteger('platform_id')->unsigned();
             $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }

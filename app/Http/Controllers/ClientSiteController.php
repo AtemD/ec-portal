@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
 use App\Http\Requests\StoreSiteRequest;
 use App\Http\Requests\UpdateSiteRequest;
+use App\Models\Site;
 
 class ClientSiteController extends Controller
 {

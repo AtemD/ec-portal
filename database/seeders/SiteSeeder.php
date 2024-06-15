@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Client;
+use App\Models\Site;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Site;
-use App\Models\Client;
+
 class SiteSeeder extends Seeder
 {
     /**
@@ -19,9 +19,9 @@ class SiteSeeder extends Seeder
 
         // For each client create 1 to 6 sites
         $clients = Client::all();
-        $clients->each(function($client) {
+        $clients->each(function ($client) {
             Site::factory()->times(mt_rand(1, 12))->create([
-                'client_id' => $client->id, 
+                'client_id' => $client->id,
             ]);
         });
 

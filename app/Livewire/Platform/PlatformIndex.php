@@ -2,19 +2,22 @@
 
 namespace App\Livewire\Platform;
 
+use App\Models\Platform;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Platform;
 
 class PlatformIndex extends Component
 {
     use WithPagination;
 
     public int $platformId;
+
     public Platform $platform;
-    public string $name = " ";
-    public string $description = " ";
+
+    public string $name = ' ';
+
+    public string $description = ' ';
 
     public function rules()
     {
@@ -34,8 +37,9 @@ class PlatformIndex extends Component
         $this->resetFields();
     }
 
-    public function resetFields(){
-        $this->reset(['name', 'description','platformId']);
+    public function resetFields()
+    {
+        $this->reset(['name', 'description', 'platformId']);
     }
 
     public function editPlatform($platform)
@@ -43,56 +47,56 @@ class PlatformIndex extends Component
         // Find and delete the platform
         $platform = Platform::findOrFail($platform['id']);
 
-        if($platform->exists()){
+        if ($platform->exists()) {
             $this->platform = $platform;
             $this->platformId = $platform->id;
             $this->name = $platform->name;
             $this->description = $platform->description;
-        }else {
+        } else {
             session()->flash('error', ' Error, something gone wrong.');
         }
-        
+
     }
 
     public function createPlatform()
     {
-        // Authorize if the user is allowed to delete this platform 
-        // $this->authorize('create', $platform); 
+        // Authorize if the user is allowed to delete this platform
+        // $this->authorize('create', $platform);
 
-        $validatedData = $this->validate(); 
+        $validatedData = $this->validate();
 
         $platform = Platform::create([
-            'name' => $validatedData['name'], 
-            'description' => $validatedData['description'] 
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
         ]);
 
-        if($platform->exists()){
-            session()->flash('success', 'Platform ' . $platform->name . ' created successfully.');
+        if ($platform->exists()) {
+            session()->flash('success', 'Platform '.$platform->name.' created successfully.');
             $this->resetFields();
-            $this->dispatch('platform-created'); 
+            $this->dispatch('platform-created');
             $this->render();
         } else {
             session()->flash('error', ' Error, please try again.');
         }
-        
+
     }
-    
+
     public function updatePlatform()
     {
-        // Authorize if the user is allowed to delete this platform 
-        // $this->authorize('update', $platform); 
+        // Authorize if the user is allowed to delete this platform
+        // $this->authorize('update', $platform);
 
         $validatedData = $this->validate();
 
         try {
             Platform::whereId($this->platform->id)->update([
                 'name' => $validatedData['name'],
-                'description' => $validatedData['description']
+                'description' => $validatedData['description'],
             ]);
-            session()->flash('success','Platform successfully updated!');
-            
+            session()->flash('success', 'Platform successfully updated!');
+
         } catch (\Exception $ex) {
-            session()->flash('error',' Error, something gone wrong!');
+            session()->flash('error', ' Error, something gone wrong!');
         }
     }
 
@@ -101,10 +105,10 @@ class PlatformIndex extends Component
         // Find and delete the platform
         $platform = Platform::find($platformId);
 
-        // Authorize if the user is allowed to delete this platform 
-        // $this->authorize('delete', $platform); 
+        // Authorize if the user is allowed to delete this platform
+        // $this->authorize('delete', $platform);
 
-        if($platform) {
+        if ($platform) {
             $platform->delete();
             session()->flash('success', 'Platform successfully deleted.');
         } else {
@@ -114,7 +118,7 @@ class PlatformIndex extends Component
 
     public function render(): View
     {
-        return view('livewire.platform.platform-index',  [
+        return view('livewire.platform.platform-index', [
             'platforms' => Platform::paginate(3),
         ]);
     }
